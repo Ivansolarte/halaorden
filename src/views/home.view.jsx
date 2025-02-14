@@ -5,7 +5,7 @@ import { Header } from "../components/headers/header";
 export const HomeView = ({ setShowLogin, setShowRegister }) => {
   useEffect(() => {
     console.log("cargando tiendas");
-
+    
     localStorage.clear();
     return () => {};
   }, []);
