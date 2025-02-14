@@ -1,0 +1,35 @@
+/* @import "tailwindcss"; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply border border-[1px] py-2 rounded-lg px-3 text-gray-500 hover:text-white font-semibold mx-1;
+}
+
+.btn_success {
+    @apply btn bg-green-300 hover:bg-green-500 ;
+}
+.btn_error {
+    @apply btn bg-red-300  hover:bg-red-400  ;
+}
+.btn_return {
+    @apply btn bg-slate-300  hover:bg-slate-400  ;
+}
+.btn_store {
+    @apply btn bg-yellow-100 hover:bg-yellow-400 ;
+}
+
+
+/* ///inputs */
+.input {
+    @apply  block rounded-md py-1.5 border w-full px-3 placeholder:text-gray-400;
+}
+.inputClass {
+    @apply    input  bg-white   text-base text-gray-900 outline-1   -outline-offset-1 outline-red-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-yellow-300 border border-yellow-300 sm:text-sm/6;
+}
+.inputError {
+    @apply    input  bg-white   text-base text-gray-900 outline-1   -outline-offset-1 outline-red-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-300 border border-red-300 sm:text-sm/6;
+}
+
