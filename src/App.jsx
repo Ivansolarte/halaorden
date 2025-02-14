@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { HomeView } from "./views/home.view";
+import { RegisterForm } from "./components/register/registerForm";
+import { LoginForm } from "./components/login/loginForm";
+import { DashboardView } from "./views/dashboard.view";
+import { AppRouter } from "./AppRouter";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("login"));
+  const [showRegister, setShowRegister] = useState(false);
+
+  useEffect(() => {
+
+    return () => {
+    };
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>ivan</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <HomeView setShowRegister={setShowRegister} />
+
+      {showRegister && <RegisterForm setShowRegister={setShowRegister} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

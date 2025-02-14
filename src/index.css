@@ -1,68 +1,35 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* @import "tailwindcss"; */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.btn {
+    @apply border border-[1px] py-2 rounded-lg px-3 text-gray-500 hover:text-white font-semibold mx-1;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.btn_success {
+    @apply btn bg-green-300 hover:bg-green-500 ;
 }
-a:hover {
-  color: #535bf2;
+.btn_error {
+    @apply btn bg-red-300  hover:bg-red-400  ;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.btn_return {
+    @apply btn bg-slate-300  hover:bg-slate-400  ;
+}
+.btn_store {
+    @apply btn bg-yellow-100 hover:bg-yellow-400 ;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+/* ///inputs */
+.input {
+    @apply  block rounded-md py-1.5 border w-full px-3 placeholder:text-gray-400;
+}
+.inputClass {
+    @apply    input  bg-white   text-base text-gray-900 outline-1   -outline-offset-1 outline-red-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-yellow-300 border border-yellow-300 sm:text-sm/6;
+}
+.inputError {
+    @apply    input  bg-white   text-base text-gray-900 outline-1   -outline-offset-1 outline-red-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-300 border border-red-300 sm:text-sm/6;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
