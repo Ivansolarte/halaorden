@@ -1,3 +1,1 @@
-export const URL_DEV = "http://localhost:3000";
-export const URL_PRE = "http://191.109.123.253:3000";
-export const URL_PRO = "";
+export const API_URL = import.meta.env.VITE_API_URL;

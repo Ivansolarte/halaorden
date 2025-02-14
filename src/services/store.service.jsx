@@ -1,5 +1,6 @@
-import { URL_PRE } from "../constant";
-const URL = `${URL_PRE}/store`;
+
+import { API_URL } from "../constant";
+const URL = `${API_URL}/store`;
 
 export const getAllStores = async () => {
   const body = {
