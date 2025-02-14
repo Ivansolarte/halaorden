@@ -13,7 +13,7 @@ export const EditProduct = ({ data, setShowModal, getProduct }) => {
     userId: data?.userId,
     storeId: data?.storeId,
     productName: data?.productName,
-    productPrime: data?.productPrime,
+    productPrice: data?.productPrice,
     productImgUrl: data?.productImgUrl,
     productDescription: data?.productDescription,
     productTerms: data?.productTerms,
@@ -47,8 +47,8 @@ export const EditProduct = ({ data, setShowModal, getProduct }) => {
           <div className="">
             <p className="my-2">Valor producto</p>
             <InputClassic
-              name={"productPrime"}
-              value={form.productPrime}
+              name={"productPrice"}
+              value={form.productPrice}
               onchange={handleChangeNum}
               maxLength={"13"}
             />

@@ -22,6 +22,7 @@ export const StoreView = () => {
         localStorage.clear();
         return;
       }
+      document.title = `${resp.companyName}`;
       setDataCompany(resp);
       localStorage.setItem(`logUrl`, resp.companyLogo);
       localStorage.setItem("rol", "client");
@@ -35,26 +36,26 @@ export const StoreView = () => {
   const sendWhapp = (payload) => {
     console.log(payload);
     console.log(dataSend);
-    
+
     const message =
       `*Fecha:* ${new Date()}%0A` +
       `*Cliente:* ${payload.nameClient}%0A` +
       `*Dirección:* ${payload.nameAddress}%0A%0A` +
-     `*Producto:* ${encodeURIComponent(dataSend.productName)}%0A` +
+      `*Producto:* ${encodeURIComponent(dataSend.productName)}%0A` +
       `*Precio:* ${dataSend.productPrice}%0A` +
       `*Cantidad:* ${dataSend.productQuantity}`;
 
     const companyPhone = dataCompany.companyPhone;
-console.log(message);
-
+    console.log(message);
+    
     const whatsappUrl = `https://wa.me/57${companyPhone}?text=${message}`;
     window.open(whatsappUrl, "_blank");
-    setActiveInf(state=>!state)
+    setActiveInf((state) => !state);
   };
 
   const sendPurchase = (payload) => {
     console.log(payload);
-    
+
     setActiveInf((state) => !state);
     const { data, form } = payload;
     const json = {

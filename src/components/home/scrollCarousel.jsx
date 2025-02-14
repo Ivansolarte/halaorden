@@ -10,6 +10,7 @@ export const ScrollCarousel = () => {
 
   const getStores = async () => {
     const resp = await getAllStoresForPublic();
+    document.title = `(${resp.length}) Tu Tienda`;
     setArrayStores(resp);
     setNumImages(resp.length);
   };
