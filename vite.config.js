@@ -8,10 +8,10 @@ export default defineConfig({
     react(),
     // tailwindcss()
   ],
-  base: "https://ivansolarte.github.io/your_store_frontend",
   server: {
     host: '0.0.0.0', // Esto permite que la aplicación escuche en todas las interfaces de red
     port: 5173,      // Puedes usar el puerto 5173 o cambiarlo si lo prefieres
     historyApiFallback: true,
-  }
+  },
+  base: "https://ivansolarte.github.io/your_store_frontend"
 })
