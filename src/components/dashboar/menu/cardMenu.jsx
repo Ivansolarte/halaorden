@@ -6,7 +6,7 @@ export const CardMenu = ({ data={}, icon }) => {
   
   return (
     <Link
-      to={`/dashboard/${data.url}`}
+      to={`/your_store_frontend/dashboard/${data.url}`}
       // onClick={()=>navigate('/dashboard/profile')}
       className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3  hover:bg-white/5 transition ease-linear duration-150"
     >
