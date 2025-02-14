@@ -1,5 +1,7 @@
-import { URL_PRE } from "../constant";
-const URL = `${URL_PRE}/Product`;
+
+
+import { API_URL } from "../constant";
+const URL = `${API_URL}/Product`;
 
 export const getProducts = async (id) => {
 

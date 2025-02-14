@@ -1,5 +1,5 @@
-import { URL_PRE } from "../constant";
-const URL = `${URL_PRE}/user`;
+import { API_URL } from "../constant";
+const URL = `${API_URL}/user`;
 
 export const getUsers = async (payload) => {
   const token = sessionStorage.getItem("token");

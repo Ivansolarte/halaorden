@@ -1,6 +1,6 @@
-// const URL = `http://localhost:3000/login`;
-import { URL_PRE } from "../constant";
-const URL = `${URL_PRE}/login`;
+
+import { API_URL } from "../constant";
+const URL = `${API_URL}/login`;
 
 export const Login = async (payload) => {
   const body = {
