@@ -40,42 +40,37 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="/err" element={<NotPage />} />
-      <Route path="/:store" element={<StoreView />} />
-
-      {/* Redirigir si está logueado */}
+    <Route path="/your_store_frontend/err" element={<NotPage />} />
+    <Route path="/your_store_frontend/:store" element={<StoreView />} />
+    <Route
+      path="/your_store_frontend/"
+      element={loggedIn ? <Navigate to="/your_store_frontend/dashboard" /> : <App />}
+    />
+    <Route
+      path="/your_store_frontend/login"
+      element={
+        loggedIn ? (
+          <Navigate to="/your_store_frontend/dashboard" />
+        ) : (
+          <LoginForm setLoggedIn={setLoggedIn} />
+        )
+      }
+    />
+    {loggedIn ? (
       <Route
-        path="/"
-        element={loggedIn ? <Navigate to="/dashboard" /> : <App />}
-      />
-      <Route
-        path="/login"
-        element={
-          loggedIn ? (
-            <Navigate to="/dashboard" />
-          ) : (
-            <LoginForm setLoggedIn={setLoggedIn} />
-          )
-        }
-      />
-
-      {/* Protegemos el Dashboard */}
-      {loggedIn ? (
-        <Route
-          path="/dashboard/*"
-          element={<DashboardView setLoggedIn={setLoggedIn} />}
-        >
-          <Route path="profile" element={<Profile />} />
-          {/* <Route  path="profile" element={<p>perfil</p>} /> */}
-          <Route path="products" element={<Product />} />
-          <Route path="stores" element={<Stores />} />
-          <Route path="users" element={<Users />} />
-          <Route path="messages" element={<h2>mensajes</h2>} />
-          <Route path="settings" element={<h2>Configuraciones</h2>} />
-        </Route>
-      ) : (
-        <Route path="/dashboard/*" element={<Navigate to="/" />} />
-      )}
-    </Routes>
+        path="/your_store_frontend/dashboard/*"
+        element={<DashboardView setLoggedIn={setLoggedIn} />}
+      >
+        <Route path="profile" element={<Profile />} />
+        <Route path="products" element={<Product />} />
+        <Route path="stores" element={<Stores />} />
+        <Route path="users" element={<Users />} />
+        <Route path="messages" element={<h2>mensajes</h2>} />
+        <Route path="settings" element={<h2>Configuraciones</h2>} />
+      </Route>
+    ) : (
+      <Route path="/your_store_frontend/dashboard/*" element={<Navigate to="/your_store_frontend/" />} />
+    )}
+  </Routes>
   );
 };

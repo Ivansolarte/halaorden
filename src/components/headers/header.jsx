@@ -219,7 +219,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                 <div className="flex items-center">
                   <Link
                     className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                    to="/login"
+                    to="/your_store_frontend/login"
                     onClick={handlelogOut}
                   >
                     Cerrar sesión
@@ -230,7 +230,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                   <div className="flex items-center">
                     <Link
                       className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                      to="/login"
+                      to="/your_store_frontend/login"
                     >
                       Iniciar sesión
                     </Link>
@@ -335,7 +335,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                           <div className="flex items-center">
                             <Link
                               className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                              to="/login"
+                              to="/your_store_frontend/login"
                               onClick={handlelogOut}
                             >
                               Cerrar sesión
@@ -345,7 +345,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                           <>
                             <Link
                               className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer"
-                              to="/login"
+                              to="/your_store_frontend/login"
                             >
                               Iniciar sesión
                             </Link>

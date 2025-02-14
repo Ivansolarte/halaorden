@@ -133,7 +133,7 @@ export const LoginForm = ({ setLoggedIn }) => {
             <p className="mt-10 text-center text-sm/6 text-gray-500">
               <Link
                 className="font-semibold text-indigo-600 hover:text-indigo-500 hover:text-base"
-                to="/?"
+                to="/your_store_frontend/?"
               >
                 Volver
               </Link>
