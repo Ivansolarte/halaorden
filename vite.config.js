@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
   server: {
@@ -8,6 +9,5 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     historyApiFallback: true,
   },
-  base: '/',
-  
+  base: mode === 'production' ? '/your_store_frontend/' : '/', // Usa '/' en desarrollo y '/your_store_frontend/' en producción
 }))
