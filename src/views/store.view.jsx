@@ -84,7 +84,7 @@ export const StoreView = () => {
           <div className="bg-white pb-24 sm:pb-20 ">
             <Header />
             <div className="mx-auto grid max-w-7xl pt-2 gap-10 px-6 lg:px-8 2xl:max-w-screen-2xl xl:grid-cols-3 ">
-              <div className="max-w-7xl bg-slate-50 rounded px-2  flex flex-col min-h-screen">
+              <div className="max-w-7xl bg-slate-50 rounded px-2  flex flex-col xl:min-h-screen">
                 <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl uppercase">
                   {dataCompany.companyName}
                 </h2>
@@ -96,7 +96,7 @@ export const StoreView = () => {
                   {/* El contenido de la página */}
                 </div>
 
-                <div>
+                <div className="sr-only xl:not-sr-only">
                   <Footer />
                 </div>
               </div>
