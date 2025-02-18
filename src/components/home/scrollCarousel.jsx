@@ -57,7 +57,7 @@ export const ScrollCarousel = () => {
             className="flex-shrink-0 w-[400px] h-[350px] flex justify-center items-center"
             onClick={() => openUrl(item)}
           >
-            <div className="mx-auto grid max-h-[330px] max-w-[330px] grid-cols-2 gap-x-2 gap-y-1 px-3 cursor-pointer border-slate-200 py-5 rounded-lg border bg-slate-50">
+            <div className="mx-auto grid max-h-[330px] max-w-[330px] grid-cols-2 gap-x-2 gap-y-1 px-3 cursor-pointer border-slate-200 py-5 rounded-lg border bg-slate-50 opacity-85">
               <article className="flex w-[305px] m-2 flex-col items-start justify-between">
                 <div className="flex items-center gap-x-4 text-xs">
                   <time

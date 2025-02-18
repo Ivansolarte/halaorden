@@ -40,7 +40,7 @@ export const LoginForm = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center px-6 py-12 lg:px-8  h-screen">
+      <div className="flex justify-center items-center px-6 py-12 lg:px-8  h-screen bg-slate-50 opacity-100 ">
         <div className=" sm:w-[480px] md:w-[550px] lg:w-[500px]">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
             <img

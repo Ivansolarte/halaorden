@@ -15,7 +15,7 @@ export const Footer = () => {
               setInfo(resp.creator)
           }
         });
-      }, 50000); // 7.5 minutos (450,000 ms)
+      }, 450000); // 7.5 minutos (450,000 ms)
   }
 
   useEffect(() => {
