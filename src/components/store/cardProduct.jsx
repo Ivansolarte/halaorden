@@ -19,6 +19,7 @@ export const CardProduct = ({ data, sendPurchase }) => {
             src={data.productImgUrl[0]}
             className="rounded-lg border min-h-64 object-contain bg-slate-50 hover:w-[800px]"
           />
+          
         </div>
         <div className="mx-auto max-w-2xl px-4 pt-2 pb-2 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pb-2">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">

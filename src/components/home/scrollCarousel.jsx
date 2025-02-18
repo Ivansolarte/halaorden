@@ -17,14 +17,19 @@ export const ScrollCarousel = () => {
 
   const formDate = (dateStr) => {
     const date = new Date(dateStr);
-    return `${date.getDate().toString().padStart(2, "0")}-${(date.getMonth() + 1)
+    return `${date.getDate().toString().padStart(2, "0")}-${(
+      date.getMonth() + 1
+    )
       .toString()
-      .padStart(2, "0")}-${date.getFullYear()} ${date.getHours()
+      .padStart(2, "0")}-${date.getFullYear()} ${date
+      .getHours()
       .toString()
       .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
   };
 
-  const openUrl = (payload) => navigate(`${payload._id}`);
+  const openUrl = (payload) => {
+    navigate(`/${payload._id}`);
+  };
 
   useEffect(() => {
     getStores();
@@ -55,7 +60,10 @@ export const ScrollCarousel = () => {
             <div className="mx-auto grid max-h-[330px] max-w-[330px] grid-cols-2 gap-x-2 gap-y-1 px-3 cursor-pointer border-slate-200 py-5 rounded-lg border bg-slate-50">
               <article className="flex w-[305px] m-2 flex-col items-start justify-between">
                 <div className="flex items-center gap-x-4 text-xs">
-                  <time dateTime={item.companyRegistrationDate} className="text-gray-500">
+                  <time
+                    dateTime={item.companyRegistrationDate}
+                    className="text-gray-500"
+                  >
                     {formDate(item.companyRegistrationDate)}
                   </time>
                   <p className="relative z-10 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-300">
@@ -79,8 +87,12 @@ export const ScrollCarousel = () => {
                     className="size-10 rounded-full bg-gray-50"
                   />
                   <div className="text-sm">
-                    <p className="font-semibold text-gray-900">Tipo de servicio</p>
-                    <p className="text-gray-600">{typeStore[item.companyType]}</p>
+                    <p className="font-semibold text-gray-900">
+                      Tipo de servicio
+                    </p>
+                    <p className="text-gray-600">
+                      {typeStore[item.companyType]}
+                    </p>
                   </div>
                 </div>
               </article>

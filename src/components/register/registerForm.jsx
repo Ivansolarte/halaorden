@@ -22,6 +22,7 @@ export const RegisterForm = ({ setShowRegister }) => {
   const [showTerm, setShowTerm] = useState(false);
 
   const handleEmail = (e) => {
+    e.target.value= e.target.value.toLowerCase()
     handleChangeText(e);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/;
     if (emailRegex.test(form.companyEmail)) {
@@ -53,6 +54,7 @@ export const RegisterForm = ({ setShowRegister }) => {
       }
     }
     if (form.userTerms == "true") {
+      form.companyName=form.companyName.toLowerCase()      
       postRegister(form).then(({ status, message }) => {
         if (status) {
           setShowRegister((state) => !state);
@@ -64,7 +66,6 @@ export const RegisterForm = ({ setShowRegister }) => {
       alert("para registarse se debe aceptar los terminos ");
     }
   };
-  console.log(form);
 
   return (
     <>
@@ -139,6 +140,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                         name={"userPhone"}
                         value={form.userPhone}
                         onchange={handleChangeNum}
+                        maxLength={'10'}
                       />
                     </div>
                   </div>
