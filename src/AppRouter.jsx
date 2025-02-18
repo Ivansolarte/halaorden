@@ -10,10 +10,10 @@ import { Product } from "./components/dashboar/products/product";
 import { Users } from "./components/dashboar/users/users";
 import { Stores } from "./components/dashboar/stores/stores";
 
+import { useLogin } from "./store/login";
+
 export const AppRouter = () => {
-  const [loggedIn, setLoggedIn] = useState(() => {
-    return JSON.parse(sessionStorage.getItem("login")) || false;
-  });
+  const { isLoggedIn, setLogin } = useLogin();
 
   async function getPublicIP() {
     try {
@@ -28,49 +28,37 @@ export const AppRouter = () => {
   useEffect(() => {
     localStorage.clear();
     getPublicIP();
-    const checkLogin = () => {
-      setLoggedIn(JSON.parse(sessionStorage.getItem("login")) || false);
-    };
-    window.addEventListener("storage", checkLogin);
+    if (sessionStorage.getItem("login") && sessionStorage.getItem("token")) {
+      setLogin();
+    }
 
-    return () => {
-      window.removeEventListener("storage", checkLogin);
-    };
+    return () => {};
   }, []);
+  console.log(isLoggedIn);
 
   return (
     <Routes>
-    <Route path="/your_store_frontend/err" element={<NotPage />} />
-    <Route path="/your_store_frontend/:store" element={<StoreView />} />
-    <Route
-      path="/your_store_frontend/"
-      element={loggedIn ? <Navigate to="/your_store_frontend/dashboard" /> : <App />}
-    />
-    <Route
-      path="/your_store_frontend/login"
-      element={
-        loggedIn ? (
-          <Navigate to="/your_store_frontend/dashboard" />
-        ) : (
-          <LoginForm setLoggedIn={setLoggedIn} />
-        )
-      }
-    />
-    {loggedIn ? (
-      <Route
-        path="/your_store_frontend/dashboard/*"
-        element={<DashboardView setLoggedIn={setLoggedIn} />}
-      >
-        <Route path="profile" element={<Profile />} />
-        <Route path="products" element={<Product />} />
-        <Route path="stores" element={<Stores />} />
-        <Route path="users" element={<Users />} />
-        <Route path="messages" element={<h2>mensajes</h2>} />
-        <Route path="settings" element={<h2>Configuraciones</h2>} />
-      </Route>
-    ) : (
-      <Route path="/your_store_frontend/dashboard/*" element={<Navigate to="/your_store_frontend/" />} />
-    )}
-  </Routes>
+      {!isLoggedIn ? (
+        <>
+          <Route path="/err" element={<NotPage />} />
+          <Route path="/err" element={<div>entro</div>} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/*" element={<App />} />
+          <Route path="/:store" element={<StoreView />} />
+        </>
+      ) : (
+        <>
+          <Route path="/dashboard/*" element={<DashboardView />}>
+            <Route path="profile" element={<Profile />} />
+            <Route path="products" element={<Product />} />
+            <Route path="stores" element={<Stores />} />
+            <Route path="users" element={<Users />} />
+            <Route path="messages" element={<h2>mensajes</h2>} />
+            <Route path="settings" element={<h2>Configuraciones</h2>} />
+          </Route>
+          <Route path="/*" element={<DashboardView />} />
+        </>
+      )}
+    </Routes>
   );
 };

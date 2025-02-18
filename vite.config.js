@@ -8,6 +8,6 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     historyApiFallback: true,
   },
-  base: '/your_store_frontend/',
+  base: '/',
   
 }))

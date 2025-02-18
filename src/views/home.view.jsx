@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { ScrollCarousel } from "../components/home/scrollCarousel";
 import { Header } from "../components/headers/header";
+import { Footer } from "../components/footer/footer";
 
 export const HomeView = ({ setShowLogin, setShowRegister }) => {
   useEffect(() => {
     console.log("cargando tiendas");
-    
+
     localStorage.clear();
     return () => {};
   }, []);
@@ -19,12 +20,11 @@ export const HomeView = ({ setShowLogin, setShowRegister }) => {
             setShowRegister={setShowRegister}
           />
         </div>
-        <div className="flex-1 py-2 sm:py-32 bg-gradient-to-r from-slate-300 via-yellow-50 to-blue-200 ">
-          <div className="mx-auto max-w-7xl px-1 lg:px-8  h-full flex flex-col justify-center">
+        <div className="flex-1 py-2 sm:pt-5 bg-gradient-to-r from-slate-300 via-yellow-50 to-blue-200 ">
+          <div className="mx-auto max-w-7xl px-1 lg:px-8  h-full flex flex-col justify-center ">
             <div className="mx-auto max-w-2xl lg:mx-0 mb-8">
               <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-                ¡Convierte tus fotos en un
-                catálogo online con
+                ¡Convierte tus fotos en un catálogo online con
                 <strong
                   className="text-yellow-300 text-4xl sm:text-6xl font-store ml-2"
                   style={{ WebkitTextStroke: "0.2px #B8860B" }}
@@ -57,6 +57,7 @@ export const HomeView = ({ setShowLogin, setShowRegister }) => {
             </div>
           </div>
         </div>
+        <Footer/>        
       </div>
     </>
   );

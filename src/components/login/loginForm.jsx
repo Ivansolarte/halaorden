@@ -5,8 +5,10 @@ import { ButtonClassic } from "../../elements/button/buttonClassic";
 import icon from "../../assets/icons/shopIcon.ico";
 import { handleChange } from "../../utils/handleChange";
 import { Login } from "../../services/login.service";
+import { useLogin } from "../../store/login";
 
-export const LoginForm = ({ setLoggedIn }) => {
+export const LoginForm = () => {
+  const {setLogin} = useLogin()
   const navigate = useNavigate();
   const { form, handleChangeText } = handleChange({
     email: "",
@@ -23,8 +25,8 @@ export const LoginForm = ({ setLoggedIn }) => {
           sessionStorage.setItem("token", token);
           sessionStorage.setItem("rol", JSON.stringify(data.userRol));
           sessionStorage.setItem("user", JSON.stringify(data));
-          setLoggedIn(true);
-          navigate("/");
+          setLogin()
+          navigate("/dashboard");
           return;
         }
         alert("Usuario no existe");

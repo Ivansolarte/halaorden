@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CardMenu } from "./cardMenu";
+import { Footer } from "../../footer/footer";
 
 export const MenuDashboard = () => {
   const arrayMenu = [
@@ -51,7 +52,7 @@ export const MenuDashboard = () => {
             id="menu"
             className=" bg-gradient-to-r from-slate-300 w-full to-yellow-50 sm:min-h-screen z-10 text-slate-300 mb-28 sm:w-64 fixed left-0 sm:h-screen   shadow-2xl sm:shadow-blue-700 "
           >
-            <div id="logo" className="my-4 px-6">
+            <div id="logo" className="my-4 px-6 sr-only sm:not-sr-only sm:px-6 sm:my-4">
               <h1 className="text-lg md:text-2xl font-bold text-black">
                 {!infUser.companyName
                   ? `${infUser.fullNames} ${infUser.fullSurname}`
@@ -61,22 +62,24 @@ export const MenuDashboard = () => {
                 Manage your actions and activities
               </p>
             </div>
-            <div id="profile" className="px-6 py-10">
+
+            <div id="profile" className="px-6 pt-10 sm:py-10 ">
               <p className="text-slate-500 mb-1">Bienvenido de nuevo</p>
-              <a href="#" className="inline-flex space-x-2 items-center">
-                <span>
+              <div  className="inline-flex space-x-2 items-center">
+                <picture>
                   <img
                     className="rounded-full w-8 h-8"
                     src="https://scontent.feoh8-1.fna.fbcdn.net/v/t1.6435-9/53718331_10157083775892766_8861495122039144448_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHt57_B2Vx9KC1xWKTgT2-fS-btmYEJgHtL5u2ZgQmAe9fXtWZ_DkKlriza_LY0mQk&_nc_ohc=mKm3mlszyQIQ7kNvgFugYM9&_nc_oc=AdhY8uKOfSw1EV-rcVlLza5njOgANMHYbYZnhvUMv-0Gpjxj587PA-Hr6I7JrwEJX9E&_nc_zt=23&_nc_ht=scontent.feoh8-1.fna&_nc_gid=A33I1hBxzBUrnkEDxNl6Uzd&oh=00_AYAP8I1T8kBT3tov3IU143QBDTA76nsT_4M579X558jnSg&oe=67CB95B0"
                     alt=""
                   />
-                </span>
+                </picture>
                 <span className="text-sm text-slate-700 md:text-base font-extrabold">
                   {`${infUser.fullNames} ${infUser.fullSurname}`}
                 </span>
-              </a>
+              </div>
             </div>
-            <div className="w-full px-6">
+
+            <div className="w-full px-6 grid grid-cols-3 gap-4 sm:grid-cols-1">
               {sessionStorage.getItem("rol") === JSON.stringify("ADMIN")
                 ? arrayMenu.map((item, index) => (
                     <CardMenu key={index} data={item} icon={icons[item.url]} />
@@ -90,6 +93,9 @@ export const MenuDashboard = () => {
                         icon={icons[item.url]}
                       />
                     ))}
+            </div>
+            <div className="sr-only sm:not-sr-only sm:mt-[50%] ">
+              <Footer />
             </div>
           </div>
         </div>

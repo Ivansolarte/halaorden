@@ -6,7 +6,6 @@ import { DashboardView } from "./views/dashboard.view";
 import { AppRouter } from "./AppRouter";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("login"));
   const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {

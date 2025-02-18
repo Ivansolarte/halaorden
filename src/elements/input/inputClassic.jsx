@@ -24,6 +24,7 @@ export const InputClassic = ({type="text", onchange, value, disabled, name, id, 
       checked={checked}
       maxLength={maxLength}
       minLength={minLength}
+      autoComplete="off"
     />
   );
 };

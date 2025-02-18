@@ -3,9 +3,11 @@ import log from "../../assets/icons/shopIcon.ico";
 import menu from "../../assets/icons/menuIcon.ico";
 import { Link, useNavigate } from "react-router";
 import { ButtonClassic } from "../../elements/button/buttonClassic";
+import { useLogin } from "../../store/login";
 
-export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
-  const navigate = useNavigate();
+export const Header = ({ setShowRegister, logOut = false }) => {
+  const {setLogout} = useLogin()
+    const navigate = useNavigate();
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const [menuLink, setMenuLink] = useState(false);
   const [rolState, setRolState] = useState(
@@ -23,7 +25,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
   };
 
   const handlelogOut = () => {
-    setLoggedIn(state=>!state)
+    setLogout()
     sessionStorage.clear();
     navigate("/");
   };
@@ -154,7 +156,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                     </div>
                     <div className="flex-auto">
                       <a href="#" className="block font-semibold text-gray-900">
-                        Integrations
+                        Vision y misión 
                         <span className="absolute inset-0"></span>
                       </a>
                       <p className="mt-1 text-gray-600">
@@ -164,8 +166,8 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                  <a
-                    href="#"
+                  <Link
+                    to={'/'}
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100"
                   >
                     <svg
@@ -181,8 +183,8 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                         clipRule="evenodd"
                       />
                     </svg>
-                    Demo
-                  </a>
+                    Inicio
+                  </Link>
                   <a
                     href="#"
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100"
@@ -219,7 +221,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                 <div className="flex items-center">
                   <Link
                     className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                    to="/your_store_frontend/login"
+                    to="/"
                     onClick={handlelogOut}
                   >
                     Cerrar sesión
@@ -230,7 +232,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                   <div className="flex items-center">
                     <Link
                       className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                      to="/your_store_frontend/login"
+                      to="/login"
                     >
                       Iniciar sesión
                     </Link>
@@ -335,7 +337,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                           <div className="flex items-center">
                             <Link
                               className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                              to="/your_store_frontend/login"
+                              to="/login"
                               onClick={handlelogOut}
                             >
                               Cerrar sesión
@@ -345,7 +347,7 @@ export const Header = ({ setShowRegister, logOut = false,setLoggedIn }) => {
                           <>
                             <Link
                               className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer"
-                              to="/your_store_frontend/login"
+                              to="/login"
                             >
                               Iniciar sesión
                             </Link>
