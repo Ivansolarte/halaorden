@@ -40,11 +40,10 @@ export const AppRouter = () => {
     <Routes>
       {!isLoggedIn ? (
         <>
-          <Route path="/err" element={<NotPage />} />
-          <Route path="/err" element={<div>entro</div>} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/*" element={<App />} />
           <Route path="/:store" element={<StoreView />} />
+          <Route path="/err" element={<NotPage />} />
+          <Route path="/*" element={<App />} />
         </>
       ) : (
         <>

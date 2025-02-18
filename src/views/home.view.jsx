@@ -20,7 +20,7 @@ export const HomeView = ({ setShowLogin, setShowRegister }) => {
             setShowRegister={setShowRegister}
           />
         </div>
-        <div className="flex-1 py-2 sm:pt-5 bg-gradient-to-r from-slate-300 via-yellow-50 to-blue-200 ">
+        <div className="flex-1 py-2 sm:pt-5 bg-gradient-to-r from-slate-50 via-yellow-50 to-slate-50 ">
           <div className="mx-auto max-w-7xl px-1 lg:px-8  h-full flex flex-col justify-center ">
             <div className="mx-auto max-w-2xl lg:mx-0 mb-8">
               <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
