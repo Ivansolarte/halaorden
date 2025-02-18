@@ -1,14 +1,13 @@
-<!-- public/404.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
-    <script>
-      window.location.replace("/your_store_frontend" + window.location.pathname + window.location.search);
-    </script>
-  </head>
-  <body>
-    <h1>Redirigiendo...</h1>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <script>
+    var path = window.location.pathname.replace(/^\/your_store_frontend/, '');
+    window.location.replace("/your_store_frontend" + path + window.location.search);
+  </script>
+</head>
+<body>
+  <h1>Redirigiendo...</h1>
+</body>
 </html>
