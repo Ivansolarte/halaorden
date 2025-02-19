@@ -9,5 +9,5 @@ export default defineConfig(({ mode }) => ({
     port: 5173,
     historyApiFallback: true,
   },
-  base: mode === 'production' ? '/your_store_frontend/' : '/', // Usa '/' en desarrollo y '/your_store_frontend/' en producción
+  base: mode === 'production' ? '/your_store_frontend/' : '/', 
 }))

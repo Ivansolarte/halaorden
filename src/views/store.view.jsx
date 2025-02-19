@@ -10,6 +10,9 @@ import { Footer } from "../components/footer/footer";
 export const StoreView = () => {
   const params = useParams();
   const navigate = useNavigate();
+  
+console.log(params);
+console.log(params.store);
 
   const [dataCompany, setDataCompany] = useState({});
   const [stateHtml, setStateHtml] = useState(false);
