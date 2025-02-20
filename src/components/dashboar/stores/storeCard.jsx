@@ -21,16 +21,15 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
   };
 
   const openUrl = () => {
-    const baseURL = window.location.href.split("#")[0]
+    const baseURL = window.location.href.split("#")[0];
     console.log(baseURL);
-    
-
+  
     const url = `${baseURL}#/${data._id}`;
     console.log(url);
-    
+  
     setUrl(url);
-    setShow(true);
-    // window.open(url, '_blank');
+    // setShow(true)
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const copieUrl = () => {
