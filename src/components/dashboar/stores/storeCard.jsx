@@ -21,9 +21,11 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
   };
 
   const openUrl = () => {
-    const baseUrl = window.location.origin;
+    const baseURL = window.location.href.split("#")[0]
+    console.log(baseURL);
+    
 
-    const url = `${baseUrl}/#/${data._id}`;
+    const url = `${baseURL}#/${data._id}`;
     console.log(url);
     
     setUrl(url);
