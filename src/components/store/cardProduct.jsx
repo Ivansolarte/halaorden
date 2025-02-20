@@ -23,7 +23,7 @@ export const CardProduct = ({ data, sendPurchase }) => {
         </div>
         <div className="mx-auto max-w-2xl px-4 pt-2 pb-2 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pb-2">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            <h1 className="text-lg font-bold tracking-tight text-gray-900 sm:text-xl">
+            <h1 className="text-lg font-bold tracking-tight text-gray-900 sm:text-xl uppercase">
               {data.productName}
             </h1>
           </div>
@@ -33,11 +33,11 @@ export const CardProduct = ({ data, sendPurchase }) => {
             </p>
 
             <div className="mt-3">
-              <p className=" text-sm font-medium text-slate-400 hover:text-indigo-500">
+              <p className=" text-sm font-medium text-slate-700 hover:text-slate-950">
                 Referencia
               </p>
               <div className="flex items-center">
-                <div className="flex items-center">{data.productReference}</div>
+                <div className="flex items-center text-slate-400">{data.productReference}</div>
               </div>
             </div>
 
@@ -70,7 +70,7 @@ export const CardProduct = ({ data, sendPurchase }) => {
                   ))}
                 </div>
               </fieldset>
-              {console.log(form?.productQuantity?.trim())}
+              {console.log(data)}
               <div className="relative group w-full mt-4">
                 {!form?.productQuantity?.trim() && (
                   <span className="absolute bottom-full mb-2 hidden w-max rounded bg-gray-800 px-2 py-3 text-xs text-white group-hover:block">
@@ -88,7 +88,7 @@ export const CardProduct = ({ data, sendPurchase }) => {
             </div>
           </div>
           <div className="pt-3 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pr-8">
-            <p className="text-base text-gray-900">{data.productDescription}</p>
+            <p className="text-base font-semibold text-gray-900  capitalize">{data.productDescription}</p>
           </div>
         </div>
       </div>

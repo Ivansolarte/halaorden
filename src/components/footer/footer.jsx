@@ -24,7 +24,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-slate-50 rounded-lg shadow-sm mt-auto text-center py-2">
+    <footer className=" rounded-lg shadow-sm mt-auto text-center py-2">
       <div className="max-w-screen-xl mx-auto text-gray-500 text-sm">
         © {info?.fecha} TUTIENDA™. Todos los derechos reservados.
         <div className="mt-1 flex justify-center gap-4">
