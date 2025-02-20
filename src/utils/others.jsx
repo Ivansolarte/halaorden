@@ -6,3 +6,8 @@ export const formatDate = (date) => {
   };
 
 export const isValidRole = () => ["ADMIN", "Cliente"].includes(sessionStorage.getItem("rol"));
+
+export const formatNumber = (value) => {
+  const num = Number(value);
+  return isNaN(num) ? "Valor inválido" : num.toLocaleString("de-DE");
+};
