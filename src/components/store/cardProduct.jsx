@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ButtonClassic } from "../../elements/button/buttonClassic";
 import { handleChange } from "../../utils/handleChange";
+import { formatNumber } from "../../utils/others";
 
 export const CardProduct = ({ data, sendPurchase }) => {
   const { form, handleChangeText } = handleChange();
@@ -19,7 +20,6 @@ export const CardProduct = ({ data, sendPurchase }) => {
             src={data.productImgUrl[0]}
             className="rounded-lg border min-h-64 object-contain bg-slate-50 hover:w-[800px]"
           />
-          
         </div>
         <div className="mx-auto max-w-2xl px-4 pt-2 pb-2 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:grid-rows-[auto_auto_1fr] lg:gap-x-8 lg:px-8 lg:pb-2">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
@@ -29,10 +29,19 @@ export const CardProduct = ({ data, sendPurchase }) => {
           </div>
           <div className="mt-2 lg:row-span-3 lg:mt-0">
             <p className="text-xl tracking-tight text-gray-900">
-              $ {data.productPrice || 0}
+              $ {formatNumber(data.productPrice) || 0}
             </p>
 
-            <div className="mt-10">
+            <div className="mt-3">
+              <p className=" text-sm font-medium text-slate-400 hover:text-indigo-500">
+                Referencia
+              </p>
+              <div className="flex items-center">
+                <div className="flex items-center">{data.productReference}</div>
+              </div>
+            </div>
+
+            <div className="mt-5">
               <h3 className="text-sm font-medium text-gray-900">Cantidad</h3>
               <fieldset aria-label="Choose a size" className="mt-4">
                 <div className="grid grid-cols-4 gap-4">
@@ -49,9 +58,11 @@ export const CardProduct = ({ data, sendPurchase }) => {
                         type="radio"
                         name="productQuantity"
                         value={value}
-                        className={`sr-only ${isSelected(value)
-                          ? "bg-blue-500 border-blue-800 text-white"
-                          : "bg-red-300 text-black"}`}
+                        className={`sr-only ${
+                          isSelected(value)
+                            ? "bg-blue-500 border-blue-800 text-white"
+                            : "bg-red-300 text-black"
+                        }`}
                         onChange={handleChangeText}
                       />
                       <span>{value}</span>

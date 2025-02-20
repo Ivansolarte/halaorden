@@ -3,12 +3,14 @@ import { InputClassic } from "../../../elements/input/inputClassic";
 import { ButtonClassic } from "../../../elements/button/buttonClassic";
 import { RadioButton } from "../../../elements/button/radioButton";
 import { handleChange } from "../../../utils/handleChange";
+import { formatNumber } from "../../../utils/others";
 import {
   postProduct,
   getProductsByIdUserId,
 } from "../../../services/product.service";
 import { getByUserId } from "../../../services/store.service";
 import { BodyEyelash } from "./bodyEyelash";
+import { InputImg } from "../../../elements/input/inputImg";
 
 export const Product = () => {
   const user = sessionStorage.getItem("user");
@@ -21,6 +23,7 @@ export const Product = () => {
     productImgUrl: [],
     productDescription: "",
     productTerms: "",
+    productReference: "",
     productState: "true",
   };
   const { form, setForm, handleChangeText, handleChangeNum } =
@@ -65,19 +68,73 @@ export const Product = () => {
     setAddButtonState((state) => !state);
   };
 
+  const closeProduct = () =>{
+    setAddButtonState((state) => !state)
+    setForm(interfaceProducto);
+  }
+
   const editProduct = () => {};
 
-  const addImgUrls = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => {
-      const updatedUrls = [...prev.productImgUrl];
-      // Reemplazar o agregar la URL según el campo
-      const index = name === "productImgUrl1" ? 0 : 1;
-      updatedUrls[index] = value;
-
-      return { ...prev, productImgUrl: updatedUrls };
+  const addImgUrls = (e, idx) => {
+    const file = e.target.files[0];
+    if (!file) return;
+  
+    const maxSize = 2 * 1024 * 1024; // 2MB en bytes
+  
+    console.log(`📥 Imagen seleccionada (${idx}):`, {
+      name: file.name,
+      type: file.type,
+      originalSize: `${(file.size / 1024).toFixed(2)} KB`,
     });
+  
+    if (file.size > maxSize) {
+      alert("La imagen es demasiado grande. Debe ser menor a 2MB.");
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+  
+    reader.onloadend = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+  
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+  
+        // Escalar a 300x300 px manteniendo proporción
+        const scale = Math.min(300 / width, 300 / height);
+        width *= scale;
+        height *= scale;
+  
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+  
+        // Convertir a JPEG con 50% de calidad
+        const base64Image = canvas.toDataURL("image/jpeg", 0.5);
+  
+        console.log(`📤 Imagen después de conversión (${idx}):`, {
+          name: file.name,
+          type: "image/jpeg",
+          convertedSize: `${((base64Image.length * (3 / 4)) / 1024).toFixed(2)} KB`,
+          base64: base64Image.substring(0, 50) + "...",
+        });
+  
+        setForm((prev) => {
+          // Asegurar que productImgUrl existe como array
+          const updatedUrls = [...(prev.productImgUrl || [])];
+          updatedUrls[idx] = base64Image; // Usa `idx` directamente
+  
+          return { ...prev, productImgUrl: updatedUrls };
+        });
+      };
+    };
   };
+  
 
   const onsubmit = () => {
     const excludedFields = [
@@ -85,6 +142,7 @@ export const Product = () => {
       "productState",
       "productTerms",
       "productImgUrl",
+      "productReference",
     ];
     const emptyFields = Object.entries(form)
       .filter(
@@ -101,11 +159,9 @@ export const Product = () => {
       );
       return;
     }
+    console.log(form);
 
-    if (
-      form.productImgUrl.length !== 2 ||
-      !form.productImgUrl.every((url) => /^https?:\/\/.+\..+/.test(url))
-    ) {
+    if (form.productImgUrl.length !== 2) {
       alert("Debe agregar dos imágenes con URLs válidas.");
       return;
     }
@@ -126,8 +182,15 @@ export const Product = () => {
 
   useEffect(() => {
     getStores();
-    return () => {};
+    console.log('creando formulario producto');
+    return () => {
+      console.log('desctruido formulario producto');
+      
+      setForm(interfaceProducto);
+    };
   }, []);
+
+  console.log(form);
 
   return (
     <>
@@ -158,7 +221,24 @@ export const Product = () => {
               </div>
               <div className="col-span-1 sm:col-span-3  w-full">
                 <label className="block text-sm/6 font-medium text-gray-900">
+                  *Referencia del producto
+                </label>
+                <div className="mt-2">
+                  <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                    <InputClassic
+                      name={"productReference"}
+                      value={form.productReference}
+                      onchange={handleChangeText}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-1 sm:col-span-3  w-full">
+                <label className="block text-sm/6 font-medium text-gray-900">
                   *Valor del producto
+                  <span className="ml-2 text-base font-semibold ">
+                    $ {formatNumber(form.productPrice)}
+                  </span>
                 </label>
                 <div className="mt-2">
                   <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
@@ -171,41 +251,59 @@ export const Product = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 sm:col-span-3">
+              <div className="col-span-1 sm:col-span-full  ">
                 <label className="block text-sm/6 font-medium text-gray-900">
                   *Imagen del producto: solo se acepta URL
                 </label>
-
-                {[1, 2].map((idx) => (
-                  <div key={idx} className="mt-2 flex items-center gap-x-3">
-                    {form.productImgUrl[idx - 1] ? (
-                      <img
-                        src={form.productImgUrl[idx - 1]}
-                        className="w-9"
-                        alt={`Imagen ${idx}`}
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  {["Imagen principal", "Imagen alternativa"].map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="mt-2 flex items-center gap-x-3 "
+                    >
+                      {form.productImgUrl[idx] ? (
+                         <img
+                         src={form.productImgUrl[idx]} // Muestra la imagen seleccionada
+                         className="w-9"
+                         alt={`Imagen ${idx}`}
+                       />
+                      ) : (
+                        <svg
+                          className="size-12 text-gray-300"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          data-slot="icon"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      )}
+                      <ButtonClassic
+                        type="store"
+                        text={item}
+                        onclick={() =>
+                          document.getElementById(`fileInput${idx}`).click()
+                        }
+                        classe={
+                          "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                        }
                       />
-                    ) : (
-                      <svg
-                        className="size-12 text-gray-300"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        data-slot="icon"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    )}
-                    <InputClassic
-                      name={`productImgUrl${idx}`}
-                      value={form.productImgUrl[idx - 1] || ""}
-                      onchange={addImgUrls}
-                    />
-                  </div>
-                ))}
+
+                      <InputImg
+                        type="file"
+                        accept="image/*"
+                        id={`fileInput${idx}`}
+                        name={`productImgUrl${idx}`}
+                        onChange={(e) => addImgUrls(e, idx)}
+                        className="hidden bg-yellow-300 text-black"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="col-span-full">
                 <label className="block text-sm/6 font-medium text-gray-900">
@@ -263,9 +361,13 @@ export const Product = () => {
                 <ButtonClassic
                   type="error"
                   text={"Cancelar"}
-                  onclick={() => setAddButtonState((state) => !state)}
+                  onclick={closeProduct}
                 />
-                <ButtonClassic text={"Crear"} onclick={onsubmit} disabled={form.productDescription.length > 150 } />
+                <ButtonClassic
+                  text={"Crear"}
+                  onclick={onsubmit}
+                  disabled={form.productDescription.length > 150}
+                />
               </div>
             </div>
           ) : (
