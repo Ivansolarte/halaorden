@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, HashRouter } from "react-router";
 import { AppRouter } from "./AppRouter.jsx";
 
-const basename = import.meta.env.MODE === "production" ? "/your_store_frontend" : "/";
+const basename = import.meta.env.MODE === "production" ? "/halaorden" : "/";
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
