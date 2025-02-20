@@ -26,8 +26,8 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
     const url = `${baseUrl}/#/${data._id}`;
     console.log(url);
     
-    // setUrl(url);
-    // setShow(true);
+    setUrl(url);
+    setShow(true);
     // window.open(url, '_blank');
   };
 
