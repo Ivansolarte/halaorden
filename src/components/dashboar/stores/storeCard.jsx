@@ -22,9 +22,12 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
 
   const openUrl = () => {
     const baseUrl = window.location.origin;
-    const url = `${baseUrl}/${data._id}`;
-    setUrl(url);
-    setShow(true);
+
+    const url = `${baseUrl}/#/${data._id}`;
+    console.log(url);
+    
+    // setUrl(url);
+    // setShow(true);
     // window.open(url, '_blank');
   };
 
