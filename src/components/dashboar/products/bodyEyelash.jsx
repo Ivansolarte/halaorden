@@ -15,7 +15,6 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
     getProductsByIdUserId(data).then((resp) => {
       setArrayProduct(resp);
       console.log(resp);
-      
     });
   };
 
@@ -44,13 +43,24 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl   lg:max-w-7xl  ">
-        <ButtonClassic
-          text={"+"}
-          onclick={() => handleAddProduct(data)}
-          disabled={arrayProduct.length < 10 ? false : true}
-        />
+      <div className="mx-auto max-w-2xl lg:max-w-7xl">
+        <div className="relative inline-block">
+          <div className="relative group">
+            <ButtonClassic
+              text={"+"}
+              onClick={() => handleAddProduct(data)}
+              disabled={arrayProduct.length >= 9}
+              className="px-4 py-2 text-white  bg-green-600 hover:bg-green-700 text-lg rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
+            />
+            {arrayProduct.length == 9 && (
+              <span className="absolute top-full z-50 left-1/2 mt-1 w-max translate-x-[5%] scale-0 rounded-lg bg-red-200 px-2 py-3 text-xs text-slate-800 group-hover:scale-100 transition-all font-bold">
+                {"Has alcanzado el límite de 12 productos. Para agregar más, es necesario contratar espacio adicional."}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
+
       <div className="mt-1">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           {arrayProduct.map((items, index) => (
@@ -71,7 +81,7 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
 
               <div className="mt-4 flex justify-between mx-2">
                 <div className="">
-                  <h3 className="text-sm text-gray-700 font-bold uppercase text-lg">
+                  <h3 className="text-sm text-gray-700 font-bold uppercase ">
                     {items.productName}
                   </h3>
                   <p className="mt-1 text-sm text-gray-500 ">
@@ -81,6 +91,14 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
                 <p className="text-sm font-medium text-gray-900">
                   ${items.productPrice}
                 </p>
+              </div>
+              <div className="mt-1 flex justify-between mx-2">
+                <p className="text-sm text-gray-700 font-bold uppercase ">
+                  Referencia:
+                </p>
+                <small className="text-slate-400">
+                  {items?.productReference}
+                </small>
               </div>
               <div className="text-center my-3 relative ">
                 <ButtonClassic

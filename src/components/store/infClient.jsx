@@ -12,7 +12,7 @@ export const InfClient = ({ setActiveInf, sendWhapp }) => {
       <div className="w-[320px] py-8 px-5">
         <div className="text-center my-5 u">
           <p className="text-xl font-semibold">
-            Ingresa tus datos para el envió
+            Ingresa tus datos para el envió/pedido
           </p>
         </div>
         <div>
@@ -24,7 +24,7 @@ export const InfClient = ({ setActiveInf, sendWhapp }) => {
           />
         </div>
         <div>
-          <p>Dirección</p>
+          <p>Dirección/Ubicación</p>
           <InputClassic
             value={form.nameAddress}
             name={"nameAddress"}

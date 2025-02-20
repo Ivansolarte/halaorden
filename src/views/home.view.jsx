@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ScrollCarousel } from "../components/home/scrollCarousel";
 import { Header } from "../components/headers/header";
 import { Footer } from "../components/footer/footer";
+import { TITLE_PAGE } from "../constant";
 
 export const HomeView = ({ setShowLogin, setShowRegister }) => {
   useEffect(() => {
@@ -37,7 +38,7 @@ export const HomeView = ({ setShowLogin, setShowRegister }) => {
                   className="text-yellow-300 text-4xl sm:text-6xl font-store ml-2"
                   style={{ WebkitTextStroke: "0.2px #B8860B" }}
                 >
-                  Tu Tienda
+                  {TITLE_PAGE}
                 </strong>
                 !
               </h2>
@@ -48,7 +49,7 @@ export const HomeView = ({ setShowLogin, setShowRegister }) => {
                   className="text-yellow-200 text-3xl font-store"
                   style={{ WebkitTextStroke: "0.2px #DAA520" }}
                 >
-                  Tu Tienda
+                   {TITLE_PAGE}
                 </strong>
                 , convierte esas imágenes en un catálogo profesional para
                 ofrecer tus productos, servicios o artículos. Es fácil, rápido y

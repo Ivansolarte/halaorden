@@ -129,11 +129,23 @@ export const Product = () => {
           const updatedUrls = [...(prev.productImgUrl || [])];
           updatedUrls[idx] = base64Image; // Usa `idx` directamente
   
-          return { ...prev, productImgUrl: updatedUrls };
+          // Almacenar nombres de archivos en un array separado
+          const updatedNames = [...(prev.productReference ? prev.productReference.split("-").map(n => n.replace("#", "")) : [])];
+          updatedNames[idx] = file.name.split(".")[0]; // Guarda el nombre correcto sin extensión
+  
+          // Crear el nuevo productReference con nombres de imágenes
+          const updatedReferences = updatedNames.map(name => `#${name}`).join("-");
+  
+          return {
+            ...prev,
+            productImgUrl: updatedUrls,
+            productReference: updatedReferences,
+          };
         });
       };
     };
   };
+  
   
 
   const onsubmit = () => {
@@ -219,41 +231,9 @@ export const Product = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 sm:col-span-3  w-full">
-                <label className="block text-sm/6 font-medium text-gray-900">
-                  *Referencia del producto
-                </label>
-                <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <InputClassic
-                      name={"productReference"}
-                      value={form.productReference}
-                      onchange={handleChangeText}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 sm:col-span-3  w-full">
-                <label className="block text-sm/6 font-medium text-gray-900">
-                  *Valor del producto
-                  <span className="ml-2 text-base font-semibold ">
-                    $ {formatNumber(form.productPrice)}
-                  </span>
-                </label>
-                <div className="mt-2">
-                  <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                    <InputClassic
-                      name={"productPrice"}
-                      value={form.productPrice}
-                      onchange={handleChangeNum}
-                      maxLength={"13"}
-                    />
-                  </div>
-                </div>
-              </div>
               <div className="col-span-1 sm:col-span-full  ">
                 <label className="block text-sm/6 font-medium text-gray-900">
-                  *Imagen del producto: solo se acepta URL
+                  *Imagen del producto
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {["Imagen principal", "Imagen alternativa"].map((item, idx) => (
@@ -305,6 +285,39 @@ export const Product = () => {
                   ))}
                 </div>
               </div>
+              <div className="col-span-1 sm:col-span-3  w-full">
+                <label className="block text-sm/6 font-medium text-gray-900">
+                  *Referencia del producto
+                </label>
+                <div className="mt-2">
+                  <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                    <InputClassic
+                      name={"productReference"}
+                      value={form.productReference}
+                      onchange={handleChangeText}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-1 sm:col-span-3  w-full">
+                <label className="block text-sm/6 font-medium text-gray-900">
+                  *Valor del producto
+                  <span className="ml-2 text-base font-semibold ">
+                    $ {formatNumber(form.productPrice)}
+                  </span>
+                </label>
+                <div className="mt-2">
+                  <div className="flex items-center rounded-md bg-white  outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                    <InputClassic
+                      name={"productPrice"}
+                      value={form.productPrice}
+                      onchange={handleChangeNum}
+                      maxLength={"13"}
+                    />
+                  </div>
+                </div>
+              </div>
+           
               <div className="col-span-full">
                 <label className="block text-sm/6 font-medium text-gray-900">
                   *Descripción

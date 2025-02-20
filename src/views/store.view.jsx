@@ -49,6 +49,7 @@ console.log(params.store);
       `*Dirección:* ${payload.nameAddress}%0A%0A` +
       `*Producto:* ${encodeURIComponent(dataSend.productName)}%0A` +
       `*Precio:* ${dataSend.productPrice}%0A` +
+      `*Referencia:* ${dataSend.productReference}%0A` +
       `*Cantidad:* ${dataSend.productQuantity}`;
 
     const companyPhone = dataCompany.companyPhone;
@@ -67,6 +68,7 @@ console.log(params.store);
     const json = {
       productName: data.productName,
       productPrice: data.productPrice,
+      productReference: data.productReference,
       productQuantity: form.productQuantity,
     };
     setDataSend(json);
