@@ -5,17 +5,8 @@ import { Footer } from "../components/footer/footer";
 import { TITLE_PAGE } from "../constant";
 
 export const HomeView = ({ setShowLogin, setShowRegister }) => {
-  useEffect(() => {
-    console.log("cargando tiendas");
 
-    console.log('1');
-    setTimeout(() => {
-      console.log('2');
-      
-    }, 0);
-    console.log('3');
-    
-
+  useEffect(() => {  
     localStorage.clear();
     return () => {};
   }, []);
