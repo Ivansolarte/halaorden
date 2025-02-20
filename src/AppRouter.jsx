@@ -27,7 +27,7 @@ export const AppRouter = () => {
 
   useEffect(() => {
     localStorage.clear();
-    getPublicIP();
+    // getPublicIP();
     if (sessionStorage.getItem("login") && sessionStorage.getItem("token")) {
       setLogin();
     }
