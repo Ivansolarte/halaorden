@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllStoresForPublic } from "../../services/store.service";
 import { useNavigate } from "react-router";
+import { TITLE_PAGE } from "../../constant";
 
 export const ScrollCarousel = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const ScrollCarousel = () => {
 
   const getStores = async () => {
     const resp = await getAllStoresForPublic();
-    document.title = `(${resp.length}) Tu Tienda`;
+    document.title = `(${resp.length}) ${TITLE_PAGE}`;
     setArrayStores(resp);
     setNumImages(resp.length);
   };
