@@ -32,6 +32,19 @@ export const Profile = () => {
     setForm(jsonSession);
   };
 
+  const handleTerms = (e) => {
+    console.log(e.target.checked);
+    if (e.target.checked) {
+      e.target.value = "true";
+      handleChangeText(e);
+      console.log("verdadero");
+    } else {
+      e.target.value = "false";
+      handleChangeText(e);
+      console.log("falso");
+    }
+  };
+
   const handleSubmit = () => {
     const isFormComplete = Object.values(form).every(
       (value) => value.trim() !== ""
@@ -45,27 +58,14 @@ export const Profile = () => {
       return;
     }
     putProfile(form).then((resp) => {
-      console.log(jsonSession);
-      console.log(resp);
-      sessionStorage.setItem("user", JSON.stringify(resp));
-      alert("se actualizao con exito");
-
-      navigate("/dashboard/stores");
+      if (resp.status) {
+        sessionStorage.setItem("user", JSON.stringify(resp));
+        alert("se actualizao con exito");
+        // navigate("/dashboard/stores");
+        return;
+      }
+      alert("algo paso comunícate con soporte o vuelve a iniciar session ");
     });
-  };
-console.log(formatDate(form.userBirthdate));
-
-  const handleTerms = (e) => {
-    console.log(e.target.checked);
-    if (e.target.checked) {
-      e.target.value = "true";
-      handleChangeText(e);
-      console.log("verdadero");
-    } else {
-      e.target.value = "false";
-      handleChangeText(e);
-      console.log("falso");
-    }
   };
 
   useEffect(() => {

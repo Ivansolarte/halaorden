@@ -42,10 +42,15 @@ export const getByUserId = async (userId) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
     },
   };
   const resp = await fetch(`${URL}?userId=${userId}`, body);
+  console.log(resp);
+  
   const data = await resp.json();
+  console.log(data);
+  
   return data;
 };
 

@@ -119,7 +119,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                 <div className="space-y-6" action="#" method="POST">
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Nombre de la compania
+                    Nombre de tu empresa
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -132,7 +132,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Numero telefónico para los pedidos
+                    Teléfono para pedidos
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -146,7 +146,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Nombre de persona a cargo
+                    Responsable del negocio
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -159,7 +159,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Email compania o persona a cargo
+                    Correo de contacto
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -173,7 +173,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div className="">
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Contrasenna
+                    Crea una contraseña segura
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -219,7 +219,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div className="">
                     <label className="block text-sm/6 font-medium text-gray-900">
-                      Repite contrasenna
+                    Confirma tu contraseña
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -237,18 +237,17 @@ export const RegisterForm = ({ setShowRegister }) => {
                     <ButtonClassic
                       type="store"
                       classe={"w-full"}
-                      text="Enviar"
+                      text="Registrarse ahora"
                       onclick={handleSubmit}
                     />
                   </div>
                 </div>
                 <p className="mt-10 text-center text-sm/6 text-gray-500 ">
-                  ¿No eres miembro?
                   <p
                     onClick={() => setShowTerm((state) => !state)}
                     className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1 cursor-pointer"
                   >
-                    termino y condiciones de uso!
+                    Aceptar términos y condiciones
                   </p>
                 </p>
               </div>
