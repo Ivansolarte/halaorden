@@ -10,7 +10,7 @@ export const Footer = () => {
   const  getInform = ()=>{
     setInterval(() => {
         init().then((resp) => {
-          console.log(resp,JSON.stringify(new Date()));
+          // console.log(resp,JSON.stringify(new Date()));
           if (resp.status) {
               setInfo(resp.creator)
           }

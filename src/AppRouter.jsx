@@ -34,7 +34,6 @@ export const AppRouter = () => {
 
     return () => {};
   }, []);
-  console.log(isLoggedIn);
 
   return (
     <Routes>

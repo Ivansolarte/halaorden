@@ -7,6 +7,8 @@ import { StoreCard } from "./storeCard";
 import { StoreEdit } from "./storeEdit";
 import { handleChange } from "../../../utils/handleChange";
 import { postStores } from "../../../services/store.service";
+import { ModalAuthExp } from "../../modals/modalAuthExp";
+import { ModalInformation } from "../../modals/modalInformation";
 
 export const Stores = () => {
   const user = sessionStorage.getItem("user");
@@ -23,17 +25,33 @@ export const Stores = () => {
     companyStatus: true,
     companyTermConditions: "",
   };
-  const { form, setForm, handleChangeNum, handleChangeText } = handleChange(interfaceStore);
+  const { form, setForm, handleChangeNum, handleChangeText } =
+    handleChange(interfaceStore);
   const [addButtonState, setAddButtonState] = useState(false);
   const [editForm, setEditForm] = useState({});
   const [arrayStore, setArrayStore] = useState([]);
   const [editaModal, setEditaModal] = useState(false);
+  const [modalToken, setModalToken] = useState(false);
+  const [modalInform, setModalInform] = useState(false);
 
   const getInformation = () => {
     const { _id } = JSON.parse(user);
-    getByUserId(_id).then((resp) => {
-      setArrayStore(resp);
-    });
+    getByUserId(_id)
+      .then((resp) => {
+        console.log(resp);
+        if (resp.status === true) {
+          setArrayStore(resp.data);
+          return;
+        }
+        if (resp.status == 401) {
+          setModalToken(true);
+          return;
+        }
+        setModalInform(true);
+      })
+      .catch(() => {
+        setModalInform(true);
+      });
   };
 
   const handleImageUpload = (event) => {
@@ -84,7 +102,7 @@ export const Stores = () => {
     }
     postStores(form).then((resp) => {
       setAddButtonState((state) => !state);
-      setForm(interfaceStore)
+      setForm(interfaceStore);
       getInformation();
     });
   };
@@ -109,7 +127,7 @@ export const Stores = () => {
               disabled={addButtonState}
               text={"+"}
               onclick={() => setAddButtonState((state) => !state)}
-              disabled={arrayStore.length < 3 ? false : true}
+              disabled={arrayStore?.length < 3 ? false : true}
             />
           </div>
           {addButtonState ? (
@@ -381,7 +399,7 @@ export const Stores = () => {
           ) : (
             <div className="mt-10">
               <div className=" flex justify-center">
-                <ul role="list" class="divide-y divide-gray-100 sm:w-[75%]">
+                <ul role="list" className="divide-y divide-gray-100 sm:w-[75%]">
                   {arrayStore.map((item, index) => (
                     <StoreCard
                       key={index}
@@ -404,6 +422,10 @@ export const Stores = () => {
           data={editForm}
           getInformation={getInformation}
         />
+      )}
+      {modalToken && <ModalAuthExp setModal={setModalToken} />}
+      {modalInform && (
+        <ModalInformation type={true} setModal={setModalInform} />
       )}
     </>
   );
