@@ -73,7 +73,6 @@ export const RegisterForm = ({ setShowRegister }) => {
         <div
           className={`
             bg-gray-50 
-            xs:bg-red-200
             h-[630px]
             xs:h-[730px]
             overflow-auto
@@ -118,7 +117,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   alt="Your Company"
                 />
                 <h2 className="mt-5 mb-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                  Resgistro
+                  Registro
                 </h2>
               </div>
 
