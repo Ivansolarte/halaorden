@@ -22,7 +22,7 @@ export const RegisterForm = ({ setShowRegister }) => {
   const [showTerm, setShowTerm] = useState(false);
 
   const handleEmail = (e) => {
-    e.target.value= e.target.value.toLowerCase()
+    e.target.value = e.target.value.toLowerCase();
     handleChangeText(e);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/;
     if (emailRegex.test(form.companyEmail)) {
@@ -54,7 +54,7 @@ export const RegisterForm = ({ setShowRegister }) => {
       }
     }
     if (form.userTerms == "true") {
-      form.companyName=form.companyName.toLowerCase()      
+      form.companyName = form.companyName.toLowerCase();
       postRegister(form).then(({ status, message }) => {
         if (status) {
           setShowRegister((state) => !state);
@@ -72,11 +72,18 @@ export const RegisterForm = ({ setShowRegister }) => {
       <ModalContainer>
         <div
           className={`
-            bg-gray-50   w-screen 
-              sm:w-[480px]
-               md:w-[550px] 
-                lg:w-[500px]
+            bg-gray-50 
+            xs:bg-red-200
+            h-[630px]
+            xs:h-[730px]
+            overflow-auto
+            w-screen              
+            sm:w-[480px]
+            md:w-[550px] 
+            lg:w-[500px]
             `}
+
+            style={{ overflow: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <div className=" flex flex-col justify-center py-3 pb-12 pr-[29px] sm:pr-0 ">
             <div className=" text-end pr-2  sm:pb-8">
@@ -119,7 +126,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                 <div className="space-y-6" action="#" method="POST">
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Nombre de tu empresa
+                      Nombre de tu empresa
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -132,7 +139,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Teléfono para pedidos
+                      Teléfono para pedidos
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -140,13 +147,13 @@ export const RegisterForm = ({ setShowRegister }) => {
                         name={"userPhone"}
                         value={form.userPhone}
                         onchange={handleChangeNum}
-                        maxLength={'10'}
+                        maxLength={"10"}
                       />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Responsable del negocio
+                      Responsable del negocio
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -159,7 +166,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div>
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Correo de contacto
+                      Correo de contacto
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -173,7 +180,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div className="">
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Crea una contraseña segura
+                      Crea una contraseña segura
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -219,7 +226,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                   </div>
                   <div className="">
                     <label className="block text-sm/6 font-medium text-gray-900">
-                    Confirma tu contraseña
+                      Confirma tu contraseña
                     </label>
                     <div className="mt-2">
                       <InputClassic
@@ -256,7 +263,11 @@ export const RegisterForm = ({ setShowRegister }) => {
         </div>
       </ModalContainer>
       {showTerm && (
-        <ModalTerms handleChangeText={handleChangeText} form={form} setShow={setShowTerm} />
+        <ModalTerms
+          handleChangeText={handleChangeText}
+          form={form}
+          setShow={setShowTerm}
+        />
       )}
     </>
   );

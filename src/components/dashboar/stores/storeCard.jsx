@@ -132,7 +132,7 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
           </div>
 
           <p
-            className={`text-xs/5 text-gray-500 cursor-pointer`}
+            className={`text-sm text-gray-500 cursor-pointer`}
             onClick={() => editStore(data)}
           >
             Edita

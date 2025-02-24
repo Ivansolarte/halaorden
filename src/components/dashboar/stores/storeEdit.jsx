@@ -44,9 +44,7 @@ export const StoreEdit = ({ setEditaModal, data, getInformation }) => {
     setErrEmail(true);
   };
 
-  const OnSubmit = () => {
-    console.log(form);
-    
+  const OnSubmit = () => {    
     const isFormComplete = Object.entries(form).every(([key, value]) => {
       if (key === "companyStatus") return true;
       return (
