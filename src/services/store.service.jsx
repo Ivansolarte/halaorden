@@ -46,11 +46,7 @@ export const getByUserId = async (userId) => {
     },
   };
   const resp = await fetch(`${URL}?userId=${userId}`, body);
-  console.log(resp);
-  
-  const data = await resp.json();
-  console.log(data);
-  
+  const data = await resp.json();  
   return data;
 };
 
