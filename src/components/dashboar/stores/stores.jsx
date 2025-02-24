@@ -13,9 +13,10 @@ import { ModalInformation } from "../../modals/modalInformation";
 export const Stores = () => {
   const userSession = sessionStorage.getItem("user");
   const userS = JSON.parse(userSession) 
+  console.log(userS._id);
   
   const interfaceStore = {
-    userId: userS.data._id,
+    userId: userS?._id,
     companyName: "",
     companyDescription: "",
     companyEmail: "",
@@ -36,7 +37,7 @@ export const Stores = () => {
   const [modalInform, setModalInform] = useState(false);
 
   const getInformation = () => {
-    getByUserId(userS.data._id)
+    getByUserId(userS?._id)
       .then((resp) => {
         if (resp.status === true) {
           setArrayStore(resp.data);
