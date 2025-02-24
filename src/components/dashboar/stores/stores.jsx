@@ -11,10 +11,11 @@ import { ModalAuthExp } from "../../modals/modalAuthExp";
 import { ModalInformation } from "../../modals/modalInformation";
 
 export const Stores = () => {
-  const user = sessionStorage.getItem("user");
-  // console.log(JSON.parse(user));
+  const userSession = sessionStorage.getItem("user");
+  const userS = JSON.parse(userSession) 
+  
   const interfaceStore = {
-    userId: JSON.parse(user)._id,
+    userId: userS.data._id,
     companyName: "",
     companyDescription: "",
     companyEmail: "",
@@ -35,10 +36,8 @@ export const Stores = () => {
   const [modalInform, setModalInform] = useState(false);
 
   const getInformation = () => {
-    const { _id } = JSON.parse(user);
-    getByUserId(_id)
+    getByUserId(userS.data._id)
       .then((resp) => {
-        console.log(resp);
         if (resp.status === true) {
           setArrayStore(resp.data);
           return;
