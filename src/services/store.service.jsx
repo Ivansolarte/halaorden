@@ -59,6 +59,7 @@ export const postStores = async (payload) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
     },
     body: JSON.stringify(payload),
   };
@@ -85,6 +86,7 @@ export const deleteStore =async (payload) => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
         },
       };
       const resp = await fetch(`${URL}/${payload}/deactivate`, body);
