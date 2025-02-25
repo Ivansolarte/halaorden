@@ -115,7 +115,7 @@ export const Stores = () => {
   return (
     <>
       <div>
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className=" border-gray-900/10 pb-12">
           <h2 className="text-xl font-extrabold text-gray-900">Tiendas</h2>
           <p className="mt-1 text-sm/6 text-gray-600">
             Esta información se mostrará públicamente, así que tenga cuidado con
@@ -414,7 +414,7 @@ export const Stores = () => {
           )}
         </div>
 
-        <div className="border-b border-gray-900/10 pb-12"></div>
+        {/* <div className="border-b border-gray-900/10 pb-12"></div> */}
       </div>
       {editaModal && (
         <StoreEdit
