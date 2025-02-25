@@ -71,7 +71,7 @@ export const StoreEdit = ({ setEditaModal, data, getInformation }) => {
 
   return (
     <ModalContainer>
-      <div className="m-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full  px-3 pt-2 pb-3">
+      <div className="m-1 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 w-full h-[630px] xs:h-[750px] sm:h-[870px] px-3 pt-2 pb-3 overflow-auto">
         <div className=" col-span-1 sm:col-span-6 text-center mt-8">
           <p className="text-xl font-semibold">Editando tienda</p>
         </div>
