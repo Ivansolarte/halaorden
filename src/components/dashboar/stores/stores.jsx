@@ -399,7 +399,7 @@ export const Stores = () => {
           ) : (
             <div className="mt-10">
               <div className=" flex justify-center">
-                <ul role="list" className="divide-y divide-gray-100 w-full  h-[100px] sm:w-[75%] border border-blue-400 border-2 ">
+                <ul role="list" className="divide-y divide-gray-100 w-full  h-[100px] sm:w-[75%]  ">
                   {arrayStore.map((item, index) => (
                     <StoreCard
                       key={index}
