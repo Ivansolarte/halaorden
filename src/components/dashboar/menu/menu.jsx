@@ -46,7 +46,7 @@ export const MenuDashboard = () => {
 
   return (
     <>
-      <div className="bg-slate-100  w-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white ">
+      <div className="bg-slate-100  w-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white z-10 ">
         <div className="flex flex-col relative w-screen">
           <div
             id="menu"
