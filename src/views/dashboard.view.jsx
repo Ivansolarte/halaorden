@@ -15,11 +15,11 @@ export const DashboardView = () => {
   return (
     <>
       <div className="flex flex-col h-screen">
-        <div className="bg-gray-200 ">
+        <div className="bg-gray-200 z-40 ">
           <Header  logOut={logOut} />
         </div>
         <div className="flex sm:flex-1 flex-col sm:flex-row h-screen overflow-hidden">         
-          <div className="w-full sm:w-64 h-[270px]  overflow-auto sm:h-full ">
+          <div className="w-full sm:w-64 h-[270px]  overflow-auto sm:h-full z-30">
             <MenuDashboard />
           </div>        
           <div className="flex-1 p-4 overflow-auto  py-2 px-10 h-full ">
