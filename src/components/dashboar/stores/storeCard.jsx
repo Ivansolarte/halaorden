@@ -57,8 +57,8 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
   };
 
   return (
-    <li className="flex justify-between gap-x-6 py-5">
-      <div className="flex min-w-0 gap-x-4">
+    <li className="flex justify-between gap-x-6 py-5 border border-red-300 w-full  ">
+      <div className="flex min-w-0 gap-x-4 border">
         <img
           className="size-12 flex-none rounded-full bg-gray-50"
           src={data?.companyLogo || log}
@@ -101,12 +101,12 @@ export const StoreCard = ({ data, editStore, getInformation }) => {
           </p>
         </div>
       </div>
-      <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+      <div className=" shrink-0 sm:flex sm:flex-col sm:items-end">
         <p className="text-sm/6 text-gray-900 font-bold">
           Tipo de tienda:
           <span className="font-light "> {typeStore[data?.companyType]}</span>
         </p>
-        <p className="mt-1 text-xs/5 text-gray-500">
+        <p className=" sr-only sm:not-sr-only shrink-0 mt-1 text-xs/5 text-gray-500">
           fecha de registro{" - "}
           <time dateTime="2023-01-23T13:23Z">
             {formDate(data?.companyRegistrationDate || "")}
