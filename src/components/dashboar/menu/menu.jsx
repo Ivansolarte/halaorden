@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CardMenu } from "./cardMenu";
 import { Footer } from "../../footer/footer";
 import { incrypto } from "../../../utils/crypto";
+import H from "../../../assets/imgs/H.png";
+import M from "../../../assets/imgs/M.png";
 
 export const MenuDashboard = () => {
   const user = incrypto(sessionStorage.getItem("user"))
@@ -71,7 +73,7 @@ export const MenuDashboard = () => {
                 <picture>
                   <img
                     className="rounded-full w-8 h-8"
-                    src="https://scontent.feoh8-1.fna.fbcdn.net/v/t1.6435-9/53718331_10157083775892766_8861495122039144448_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHt57_B2Vx9KC1xWKTgT2-fS-btmYEJgHtL5u2ZgQmAe9fXtWZ_DkKlriza_LY0mQk&_nc_ohc=mKm3mlszyQIQ7kNvgFugYM9&_nc_oc=AdhY8uKOfSw1EV-rcVlLza5njOgANMHYbYZnhvUMv-0Gpjxj587PA-Hr6I7JrwEJX9E&_nc_zt=23&_nc_ht=scontent.feoh8-1.fna&_nc_gid=A33I1hBxzBUrnkEDxNl6Uzd&oh=00_AYAP8I1T8kBT3tov3IU143QBDTA76nsT_4M579X558jnSg&oe=67CB95B0"
+                    src={user.userGender=="M"?M:H}
                     alt=""
                   />
                 </picture>
