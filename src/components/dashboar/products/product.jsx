@@ -6,17 +6,22 @@ import { handleChange } from "../../../utils/handleChange";
 import { formatNumber } from "../../../utils/others";
 import {
   postProduct,
-  getProductsByIdUserId,
+ getAllProducts,
 } from "../../../services/product.service";
-import { getByUserId } from "../../../services/store.service";
+import { getByUserId,getAllStores } from "../../../services/store.service";
 import { BodyEyelash } from "./bodyEyelash";
 import { InputImg } from "../../../elements/input/inputImg";
+import { incrypto } from "../../../utils/crypto";
 
 export const Product = () => {
-  const user = sessionStorage.getItem("user");
+  const userS = incrypto(sessionStorage.getItem("user"));
+  // console.log(userS);
+  
+
+  
 
   const interfaceProducto = {
-    userId: JSON.parse(user)._id,
+    userId: userS._id,
     storeId: "",
     productName: "",
     productPrice: "",
@@ -36,11 +41,24 @@ export const Product = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const getStores = () => {
-    getByUserId(JSON.parse(user)._id).then((resp) => {
+    console.log(userS);
+    if (userS.userRol=="ADMIN") {
+      getAllStores().then((resp)=>{
+        console.log(resp)  
+        const dataStore = { storeId: resp.data[0]._id, userId: resp.data[0].userId };        
+        setDataProduct(state => dataStore);
+        setArrayStore(resp.data);
+
+      })
+      console.log('entro admin');
+      return
+      
+    }
+    getByUserId(userS._id).then((resp) => {
       if (resp) {
-        const dataStore = { storeId: resp[0]._id, userId: resp[0].userId };
-        setDataProduct((state) => dataStore);
-        setArrayStore(resp);
+        const dataStore = { storeId: resp.data[0]._id, userId: resp.data[0].userId };        
+        setDataProduct(state => dataStore);
+        setArrayStore(resp.data);
       }
     });
   };
@@ -202,7 +220,7 @@ export const Product = () => {
     };
   }, []);
 
-  console.log(form);
+
 
   return (
     <>

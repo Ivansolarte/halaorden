@@ -3,18 +3,31 @@
 import { API_URL } from "../constant";
 const URL = `${API_URL}/Product`;
 
-export const getProducts = async (id) => {
-
+//los productos 
+export const getAllProducts = async (id) => {
   const body = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+  const resp = await fetch(URL, body);
+  const data = await resp.json();
+  return data;
+}
+//los productos segun la tienda para publico
+export const getProducts = async (id) => {
+  const body = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      //no necesita token
     },
   };
   const resp = await fetch(`${URL}/${id}/public`, body);
   const data = await resp.json();
   return data;
-
 }
 
 

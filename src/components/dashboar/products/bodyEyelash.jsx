@@ -7,6 +7,8 @@ import {
 import { EditProduct } from "./editProduct";
 
 export const BodyEyelash = ({ data, handleAddProduct }) => {
+  console.log(data);
+  
   const [arrayProduct, setArrayProduct] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [dataEdit, setDataEdit] = useState([]);

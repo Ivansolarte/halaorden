@@ -6,6 +6,7 @@ import icon from "../../assets/icons/shopIcon.ico";
 import { handleChange } from "../../utils/handleChange";
 import { Login } from "../../services/login.service";
 import { useLogin } from "../../store/login";
+import { crypto } from "../../utils/crypto";
 
 export const LoginForm = () => {
   const {setLogin} = useLogin()
@@ -21,10 +22,12 @@ export const LoginForm = () => {
       Login(form).then((resp) => {
         const { status, message, data, token } = resp;
         if (status) {
+          console.log(crypto(token));
+          
           sessionStorage.setItem("login", JSON.stringify(status));
           sessionStorage.setItem("token", token);
           sessionStorage.setItem("rol", JSON.stringify(data.userRol));
-          sessionStorage.setItem("user", JSON.stringify(data));
+          sessionStorage.setItem("user", crypto(data));
           setLogin()
           navigate("/dashboard");
           return;
