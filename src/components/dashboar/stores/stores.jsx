@@ -6,15 +6,13 @@ import { getByUserId } from "../../../services/store.service";
 import { StoreCard } from "./storeCard";
 import { StoreEdit } from "./storeEdit";
 import { handleChange } from "../../../utils/handleChange";
-import { postStores } from "../../../services/store.service";
+import { postStores,getAllStores } from "../../../services/store.service";
 import { ModalAuthExp } from "../../modals/modalAuthExp";
 import { ModalInformation } from "../../modals/modalInformation";
+import { incrypto } from "../../../utils/crypto";
 
 export const Stores = () => {
-  const userSession = sessionStorage.getItem("user");
-  const userS = JSON.parse(userSession) 
-  console.log(userS._id);
-  
+  const userS = incrypto(sessionStorage.getItem("user"));  
   const interfaceStore = {
     userId: userS?._id,
     companyName: "",
@@ -37,6 +35,23 @@ export const Stores = () => {
   const [modalInform, setModalInform] = useState(false);
 
   const getInformation = () => {
+
+console.log(userS.userRol);
+console.log(sessionStorage.getItem('rol'));
+console.log("ADMIN");
+console.log(sessionStorage.getItem('rol')=="ADMIN");
+
+    if (userS.userRol=="ADMIN") {
+      console.log("entro aa tiendas admin")      
+      getAllStores().then((resp)=>{
+        console.log(resp)  
+        if (resp.status === true) {
+          setArrayStore(resp.data);
+          return;
+        }      
+      })
+      return
+    }
     getByUserId(userS?._id)
       .then((resp) => {
         if (resp.status === true) {
@@ -100,6 +115,7 @@ export const Stores = () => {
       alert("Por favor, completa todos los campos.");
       return;
     }
+
     postStores(form).then((resp) => {
       setAddButtonState((state) => !state);
       setForm(interfaceStore);

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { CardMenu } from "./cardMenu";
 import { Footer } from "../../footer/footer";
+import { incrypto } from "../../../utils/crypto";
 
 export const MenuDashboard = () => {
+  const user = incrypto(sessionStorage.getItem("user"))
+  
   const arrayMenu = [
     {
       url: "profile",
@@ -38,9 +41,8 @@ export const MenuDashboard = () => {
   ];
   const [infUser, setInfUser] = useState({});
 
-  useEffect(() => {
-    const user = sessionStorage.getItem("user");
-    setInfUser(JSON.parse(user));
+  useEffect(() => {   
+    setInfUser(user);
     return () => {};
   }, []);
 

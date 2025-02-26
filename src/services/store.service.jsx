@@ -1,23 +1,26 @@
 
 import { API_URL } from "../constant";
 const URL = `${API_URL}/store`;
-
+//todas las tiendas ADMIN
 export const getAllStores = async () => {
   const body = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
     },
   };
   const resp = await fetch(URL, body);
   const data = await resp.json();
   return data;
 };
+//las tiendas para publicar al publico
 export const getAllStoresForPublic = async () => {
   const body = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      ///no necesita token
     },
   };
   const resp = await fetch(`${URL}/public`, body);
@@ -36,7 +39,7 @@ export const getById = async (id) => {
   const data = await resp.json();
   return data;
 };
-
+//todas las tiendas de un usuario
 export const getByUserId = async (userId) => {
   const body = {
     method: "GET",

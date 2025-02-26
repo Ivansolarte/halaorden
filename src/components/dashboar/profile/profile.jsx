@@ -6,30 +6,30 @@ import { RadioButton } from "../../../elements/button/radioButton";
 import { putProfile } from "../../../services/profile.service";
 import { formatDate } from "../../../utils/others";
 import { useNavigate } from "react-router";
+import { incrypto } from "../../../utils/crypto";
 
 export const Profile = () => {
   let navigate = useNavigate();
-  const sessionstorage = sessionStorage.getItem("user");
-  const jsonSession = JSON.parse(sessionstorage);
-
+  const userS = incrypto(sessionStorage.getItem("user"));
+  
   const { form, setForm, handleChangeText, handleChangeNum } = handleChange({
-    emailUser: jsonSession?.emailUser || "",
-    fullNames: jsonSession?.fullNames || "",
-    fullSurname: jsonSession?.fullSurname || "",
-    userGender: jsonSession?.userGender || "",
-    userPhone: jsonSession?.userPhone || "",
-    userBirthdate: formatDate(jsonSession?.userBirthdate) || "1000-01-01",
-    userRol: jsonSession?.userRol || "",
-    userTerms: jsonSession?.userTerms || "",
-    userLocation: jsonSession?.userLocation || "",
-    _id: jsonSession?._id || "",
+    emailUser: userS?.emailUser || "",
+    fullNames: userS?.fullNames || "",
+    fullSurname: userS?.fullSurname || "",
+    userGender: userS?.userGender || "",
+    userPhone: userS?.userPhone || "",
+    userBirthdate: formatDate(userS?.userBirthdate) || "1000-01-01",
+    userRol: userS?.userRol || "",
+    userTerms: userS?.userTerms || "",
+    userLocation: userS?.userLocation || "",
+    _id: userS?._id || "",
   });
 
   const getInformation = () => {
-    if (jsonSession.userBirthdate) {
-      jsonSession.userBirthdate = formatDate(jsonSession?.userBirthdate);
+    if (userS.userBirthdate) {
+      userS.userBirthdate = formatDate(userS?.userBirthdate);
     }
-    setForm(jsonSession);
+    setForm(userS);
   };
 
   const handleTerms = (e) => {
@@ -206,7 +206,7 @@ export const Profile = () => {
                 onchange={handleTerms}
                 checked={form.userTerms == "true"}
                 disabled={
-                  form.userTerms == "true" && jsonSession?.userTerms == "true"
+                  form.userTerms == "true" && userS?.userTerms == "true"
                 }
               />
             </div>
