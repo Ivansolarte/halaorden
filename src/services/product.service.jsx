@@ -4,7 +4,7 @@ import { API_URL } from "../constant";
 const URL = `${API_URL}/Product`;
 
 //los productos 
-export const getAllProducts = async (id) => {
+export const getAllProducts = async (payload,page) => {
   const body = {
     method: "GET",
     headers: {
@@ -12,7 +12,7 @@ export const getAllProducts = async (id) => {
       "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
     },
   };
-  const resp = await fetch(URL, body);
+  const resp = await fetch(`${URL}/allstore?page=${page}&limit=${payload.limit}&productName=${payload.productName}&companyName=${payload.companyName}`, body);
   const data = await resp.json();
   return data;
 }
@@ -43,7 +43,7 @@ export const postProduct = async (payload) => {
   const data = await resp.json();
   return data;
 };
-
+//complemento para los productos del usuario
 export const getProductsByIdUserId = async (payload) => {
   const body = {
     method: "GET",

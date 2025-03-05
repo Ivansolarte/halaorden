@@ -5,10 +5,11 @@ import {
   deleteProduct,
 } from "../../../services/product.service";
 import { EditProduct } from "./editProduct";
+import { P } from "../../../elements/text/P";
 
 export const BodyEyelash = ({ data, handleAddProduct }) => {
   console.log(data);
-  
+
   const [arrayProduct, setArrayProduct] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [dataEdit, setDataEdit] = useState([]);
@@ -50,13 +51,15 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
           <div className="relative group">
             <ButtonClassic
               text={"+"}
-              onClick={() => handleAddProduct(data)}
-              disabled={arrayProduct.length >= 9}
+              onclick={() => handleAddProduct(data)}
+              disabled={false}
               className="px-4 py-2 text-white  bg-green-600 hover:bg-green-700 text-lg rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
             />
             {arrayProduct.length == 9 && (
               <span className="absolute top-full z-50 left-1/2 mt-1 w-max translate-x-[5%] scale-0 rounded-lg bg-red-200 px-2 py-3 text-xs text-slate-800 group-hover:scale-100 transition-all font-bold">
-                {"Has alcanzado el límite de 12 productos. Para agregar más, es necesario contratar espacio adicional."}
+                {
+                  "Has alcanzado el límite de 12 productos. Para agregar más, es necesario contratar espacio adicional."
+                }
               </span>
             )}
           </div>
@@ -70,7 +73,6 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
               key={index}
               className="group relative rounded-md border bg-white p-3"
             >
-              {/* Contenedor relativo para que la imagen no bloquee otros elementos */}
               <div className="relative">
                 <img
                   onMouseEnter={() => console.log("Modal abierto")}
@@ -95,9 +97,7 @@ export const BodyEyelash = ({ data, handleAddProduct }) => {
                 </p>
               </div>
               <div className="mt-1 flex justify-between mx-2">
-                <p className="text-sm text-gray-700 font-bold uppercase ">
-                  Referencia:
-                </p>
+                <P text={'Referencia:'} classe={'text-sm text-gray-700 font-bold uppercase'}/>
                 <small className="text-slate-400">
                   {items?.productReference}
                 </small>
