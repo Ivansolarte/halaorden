@@ -1,25 +1,25 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { ModalContainer } from "../../elements/modal/modal";
 
-export const ModalInformation = ({type=false , setModal}) => {
-
-    useEffect(() => {
-      
+export const ModalInformation = ({ type = false, setModal }) => {
+  useEffect(() => {
     setTimeout(() => {
-        setModal(state=>!state)
+      setModal((state) => !state);
     }, 6000);
-      return () => {
-        
-      }
-    }, [])
-    
+    return () => {};
+  }, []);
+
   return (
     <ModalContainer>
       <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 w-[350px]">
         <div className="sm:flex sm:items-start">
-          <div className={`mx-auto flex size-12 shrink-0 items-center justify-center rounded-full ${type?"text-red-100":" text-blue-100"} sm:mx-0 sm:size-10`}>
+          <div
+            className={`mx-auto flex size-12 shrink-0 items-center justify-center rounded-full ${
+              type ? "text-red-100" : " text-blue-100"
+            } sm:mx-0 sm:size-10`}
+          >
             <svg
-              className={`size-6 ${type?" text-red-600":" text-blue-600"}`}
+              className={`size-6 ${type ? " text-red-600" : " text-blue-600"}`}
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
@@ -35,12 +35,16 @@ export const ModalInformation = ({type=false , setModal}) => {
             </svg>
           </div>
           <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 className="text-base font-semibold text-gray-900" id="modal-title">
+            <h3
+              className="text-base font-semibold text-gray-900"
+              id="modal-title"
+            >
               Advertencia
             </h3>
             <div className="mt-2">
               <p className="text-sm text-gray-500">
-              Algo salió mal con la petición. Inténtalo de nuevo o contacta con soporte.
+                Algo salió mal con la petición. Inténtalo de nuevo o contacta
+                con soporte.
               </p>
             </div>
           </div>

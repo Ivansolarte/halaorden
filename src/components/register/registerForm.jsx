@@ -20,6 +20,12 @@ export const RegisterForm = ({ setShowRegister }) => {
   const [errEmail, setErrEmail] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showTerm, setShowTerm] = useState(false);
+  const [alertPassword, setAlertPassword] = useState({
+    letters: false,
+    capitalLetters: false,
+    numbers: false,
+    minSix: false,
+  });
 
   const handleEmail = (e) => {
     e.target.value = e.target.value.toLowerCase();
@@ -33,6 +39,17 @@ export const RegisterForm = ({ setShowRegister }) => {
   };
 
   const handlePassword = (e) => {
+    const { value } = e.target;
+    handleChangeText(e);
+    setAlertPassword({
+      letters: /[a-zA-Z]/.test(value), // Al menos una letra
+      capitalLetters: /[A-Z]/.test(value), // Al menos una mayúscula
+      numbers: /\d/.test(value), // Al menos un número
+      minSix: value.length >= 6, // Al menos 6 caracteres
+    });
+  };
+
+  const handlePasswordConfirm = (e) => {
     const { value } = e.target;
     setConfirmPassword(() => value);
   };
@@ -53,8 +70,13 @@ export const RegisterForm = ({ setShowRegister }) => {
         return;
       }
     }
+
+    if (!alertPassword.letters || !alertPassword.capitalLetters || !alertPassword.numbers || !alertPassword.minSix) {
+      return;
+    }
+
     if (form.userTerms == "true") {
-      form.companyName = form.companyName.toLowerCase();
+      form.companyName = form.companyName.toLowerCase();      
       postRegister(form).then(({ status, message }) => {
         if (status) {
           setShowRegister((state) => !state);
@@ -81,10 +103,20 @@ export const RegisterForm = ({ setShowRegister }) => {
             md:w-[550px] 
             lg:w-[500px]
             `}
-
-            style={{ overflow: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          style={{
+            overflow: "auto",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
         >
-          <div className=" flex flex-col justify-center py-3 pb-12 pr-[29px] sm:pr-0 ">
+          <div
+            className=" flex flex-col justify-center py-3 pb-12 pr-[29px] sm:pr-0  overflow-y-auto "
+            style={{
+              overflow: "auto",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
             <div className=" text-end pr-2  sm:pb-8">
               <button
                 type="button"
@@ -189,7 +221,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                         type="password"
                         name={"password"}
                         value={form.password}
-                        onchange={handleChangeText}
+                        onchange={handlePassword}
                       />
                       {!showPassword ? (
                         <div className="ml-2">
@@ -222,6 +254,46 @@ export const RegisterForm = ({ setShowRegister }) => {
                         </div>
                       )}
                     </div>
+                    {form.password != "" && (
+                      <div className="flex flex-col ml-2 -mb-6 ">
+                        <span
+                          className={`text-[9px] ${
+                            alertPassword.letters
+                              ? "text-green-600"
+                              : "text-red-500"
+                          }`}
+                        >
+                          Al menos una letra
+                        </span>
+                        <span
+                          className={`text-[9px] ${
+                            alertPassword.capitalLetters
+                              ? "text-green-600"
+                              : "text-red-500"
+                          }`}
+                        >
+                          Al menos una letra mayúscula
+                        </span>
+                        <span
+                          className={`text-[9px] ${
+                            alertPassword.numbers
+                              ? "text-green-600"
+                              : "text-red-500"
+                          }`}
+                        >
+                          Al menos un número{" "}
+                        </span>
+                        <span
+                          className={`text-[9px] ${
+                            alertPassword.minSix
+                              ? "text-green-600"
+                              : "text-red-500"
+                          }`}
+                        >
+                          Al menos 6 caracteres
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="">
                     <label className="block text-sm/6 font-medium text-gray-900">
@@ -235,7 +307,7 @@ export const RegisterForm = ({ setShowRegister }) => {
                         type="text"
                         name={"password"}
                         value={confirmPassword}
-                        onchange={handlePassword}
+                        onchange={handlePasswordConfirm}
                       />
                     </div>
                   </div>
