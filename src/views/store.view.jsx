@@ -75,7 +75,7 @@ console.log(params.store);
   };
 
   useEffect(() => {
-    getproduct();
+    // getproduct();
     return () => {
       localStorage.clear();
       console.log("destruyendo store");
