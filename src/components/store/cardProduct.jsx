@@ -70,7 +70,6 @@ export const CardProduct = ({ data, sendPurchase }) => {
                   ))}
                 </div>
               </fieldset>
-              {console.log(data)}
               <div className="relative group w-full mt-4">
                 {!form?.productQuantity?.trim() && (
                   <span className="absolute bottom-full mb-2 hidden w-max rounded bg-gray-800 px-2 py-3 text-xs text-white group-hover:block">
