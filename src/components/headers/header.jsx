@@ -337,7 +337,7 @@ export const Header = ({ setShowRegister, logOut = false }) => {
                           <div className="flex items-center">
                             <Link
                               className="text-sm/6 font-semibold text-gray-900 mr-3 cursor-pointer"
-                              to="/login"
+                              to="/"
                               onClick={handlelogOut}
                             >
                               Cerrar sesión

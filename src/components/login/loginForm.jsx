@@ -21,9 +21,7 @@ export const LoginForm = () => {
     if (form.email.trim() !== "" && form.password.trim() !== "") {
       Login(form).then((resp) => {
         const { status, message, data, token } = resp;
-        if (status) {
-          console.log(crypto(token));
-          
+        if (status) {          
           sessionStorage.setItem("login", JSON.stringify(status));
           sessionStorage.setItem("token", token);
           sessionStorage.setItem("rol", JSON.stringify(data.userRol));
@@ -138,7 +136,7 @@ export const LoginForm = () => {
             <p className="mt-10 text-center text-sm/6 text-gray-500">
               <Link
                 className="font-semibold text-indigo-600 hover:text-indigo-500 hover:text-base"
-                to="/your_store_frontend/?"
+                to="/"
               >
                 Volver
               </Link>
